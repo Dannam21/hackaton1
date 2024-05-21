@@ -1,10 +1,14 @@
 package org.dbp.hackaton1.user.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Data;
+import org.dbp.hackaton1.Reserva.domain.Reserva;
 
+import java.util.List;
+
+@Data
+@Entity
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,4 +25,6 @@ public class User {
 
     @Column(nullable = false)
     private String telefono;
+    @OneToMany(mappedBy ="user" )
+    private List<Reserva> reserva;
 }
